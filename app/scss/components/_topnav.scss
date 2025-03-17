@@ -5,13 +5,14 @@
   &__wrapper {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+
     padding-block: 12px;
     @include u.breakpoint(large) {
       padding-block: 20px;
     }
   }
   &__homelink {
+    align-self: center;
   }
   &__logo {
     width: u.rem(70);
@@ -29,7 +30,9 @@
     }
   }
   &__link {
+    display: block;
     font-size: u.rem(14);
+    line-height: 1;
     font-weight: 700;
     letter-spacing: 0.05em;
     color: var(--text-light);
@@ -39,10 +42,22 @@
       font-size: u.rem(16);
     }
 
-    &:hover {
-      text-decoration: underline;
-      text-decoration-thickness: 2px;
-      text-underline-offset: 4px;
+    &::after {
+      content: '';
+      display: block;
+      height: 3px;
+      margin-top: 3px;
+      background: linear-gradient(
+        to right,
+        var(--link-gradient1),
+        var(--link-gradient2) 80%
+      );
+      opacity: 0;
+      transition: opacity 250ms ease-in-out;
+    }
+
+    &:hover::after {
+      opacity: 1;
     }
   }
 }
